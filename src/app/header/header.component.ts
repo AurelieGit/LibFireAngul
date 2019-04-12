@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase'; //importer Fb//
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -9,23 +9,23 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  isAuth: boolean;
+  isAuth: boolean; // boolean local//
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    firebase.auth().onAuthStateChanged(
-      (user) => {
-        if(user) {
-          this.isAuth = true;
-        } else {
-        this.isAuth = false;
+    firebase.auth().onAuthStateChanged( // déclencher à chque fois que l'état d'auth est changé par l'utilisateur//
+      (user) => { // observable//
+        if(user) { // si authentifié : objet user déclenché par le serveur//
+          this.isAuth = true; // information de connexion
+        } else { // sinon 
+        this.isAuth = false;  // pas connecté//
         }  
       }
     );
   }
 
-  onSignOut() {
+  onSignOut() { //pour se déconnecter//
     this.authService.signOutUser(); 
   }
 

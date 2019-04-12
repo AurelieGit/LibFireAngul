@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-  signInForm: FormGroup; /* création d'un formulaire réactive pour l'indentification /// importer FormsGroup*/
+  signInForm: FormGroup; /* Formulaire réactive pour l'indentification /// importer FormsGroup*/
   errorMessage: string; /* création d'un éventuelle message d'erreur si jamais ont en a besoins */
 
   constructor(private formBuilder: FormBuilder, /* formBuilder pour la création du formulaire /// importer FormBuilder */

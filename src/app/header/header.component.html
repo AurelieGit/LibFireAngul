@@ -6,14 +6,14 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li routerLinkActive="Active" *ngIf="!isAuth">
+      <li routerLinkActive="Active" *ngIf="!isAuth"><!-- créer un compte apparait si user pas authentifié-->
         <a routerLink="auth/signup">Créez un compte</a>
       </li>
       <li routerLinkActive="Active" *ngIf="!isAuth">
         <a routerLink="auth/signin">Connexion</a>
       </li>
       <li>
-        <a (click)="onSignOut()" *ngIf="isAuth" style="cursor:pointer">Déconnexion</a>
+        <a (click)="onSignOut()" *ngIf="isAuth" style="cursor:pointer">Déconnexion</a><!-- click listener pour la déconnexion de l'utilisateur-->
       </li>
     </ul>
   </div>
