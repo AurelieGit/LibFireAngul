@@ -11,7 +11,7 @@ import { Book } from 'src/app/models/book.model';
 })
 export class BookFormComponent implements OnInit {
 
-  bookForm: FormGroup;
+  auteurForm: FormGroup;
   fileIsUploading = false;
   fileUrl: string;
   fileUploaded = false;
@@ -25,16 +25,16 @@ export class BookFormComponent implements OnInit {
   }
 
   initForm() {
-    this.bookForm = this.formBuilder.group( {
-      title: ['', Validators.required],
-      author: ['', Validators.required]
+    this.auteurForm = this.formBuilder.group( {
+      auteur: ['', Validators.required],
+      bibliographie: ['', Validators.required]
     });
   }
 
   onSaveBook() {
-    const title = this.bookForm.get('title').value;
-    const author = this.bookForm.get('author').value;
-    const newBook = new Book(title, author);
+    const auteur = this.auteurForm.get('auteur').value;
+    const bibliographie = this.auteurForm.get('bibliographie').value;
+    const newBook = new Book(auteur,  bibliographie);
     if(this.fileUrl && this.fileUrl !== '') {
       newBook.photo = this.fileUrl;
     }
