@@ -18,11 +18,11 @@ export class AuteursService {
   }
     
   saveAuteurs() { /* création de la méthode qui permet d'enregistrer des livres */
-    firebase.database().ref('/books').set(this.auteurs); /* .database pour les methodes de la base de donnée | .ref qui retourne une reference a la base de donnée | '/books' création du node dans la base de donnée (tout les livres seront stockée ici) | .set pour enregistrer this.books */
+    firebase.database().ref('/auteurs').set(this.auteurs); /* .database pour les methodes de la base de donnée | .ref qui retourne une reference a la base de donnée | '/books' création du node dans la base de donnée (tout les livres seront stockée ici) | .set pour enregistrer this.books */
   }
 
   getAuteurs() { /* création de la méthode qui permet de récuperer les livres depuis la base de donnée */
-    firebase.database().ref('/books')
+    firebase.database().ref('/auteurs')
     .on('value', (data) => { /* création de la méthode .on qui permet de réagir a des modification de la base de donée | l'événement que tu veux regarder c'est "value" | en deuxieme argument ont passe la fonction qui réagiras a chaque evenement */
       this.auteurs = data.val() ? data.val() : []; /* data contient la propriéter Val (valeurs des données retourner par le serveur) */
       this.emitAuteurs(); /* émitions du subject */
@@ -32,7 +32,7 @@ export class AuteursService {
   getSingleAuteur(id: number) { /* création de la méthode qui permet de retourner un seule livre | il prend l'identifiant du livre donc le number comme argument | la méthode seras asynchrone*/
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('/books/' + id).once('value').then(
+        firebase.database().ref('/auteurs/' + id).once('value').then(
           (data) => {
             resolve(data.val());
           }, (error) => {
@@ -49,9 +49,9 @@ export class AuteursService {
     this.emitAuteurs(); /* permet d'emetre le subject */
   }
 
-  removeAuteur(auteur: Auteur) {
+  removeAuteur(auteur: Auteur) { // si auteur supprimé la photo aussi//
     if(auteur.photo) {
-      const storageRef = firebase.storage().refFromURL(auteur.photo);
+      const storageRef = firebase.storage().refFromURL(auteur.photo); // car 
       storageRef.delete().then(
         () => {
           console.log('Photo removed!');
@@ -74,13 +74,12 @@ export class AuteursService {
 }
 
 uploadFile(file: File) {
-  return new Promise(
+  return new Promise( // methode asyn car prend du temp de charger un photo//
     (resolve, reject) => {
-      const almostUniqueFileName = Date.now().toString();
-      const upload = firebase.storage().ref()
-        .child('images/' + almostUniqueFileName + file.name)
-        .put(file)
-        .then(snapshot => {
+      const almostUniqueFileName = Date.now().toString(); // pour nom unique evite d'écraser d'autres fichier qui porteraient un m^me nom
+      const upload = firebase.storage().ref() //upload = tache de chargement//
+        .child('images/' + almostUniqueFileName + file.name).put(file);// methode child pour retourner une référence de sous dossier images avec un nouveau nom de dossier unique + nom du fichier d'origine
+        /*.then(snapshot => { 
            return snapshot.ref.getDownloadURL(); 
          })
          .then(downloadURL => {
@@ -91,7 +90,23 @@ uploadFile(file: File) {
            console.log(`Failed to upload file and get link - ${error}`);
            reject(); 
          });
-    }
+}
   );
+}
+}*/
+upload.on(firebase.storage.TaskEvent.STATE_CHANGED, //retourne une référence à la racine de votre bucket Firebase,
+  () => { // avec la methode on() on suit l'état en passant 3 fonctions//
+    console.log('Chargement…'); //déclenchée à chaque fois que des données sont envoyées vers le serveur
+  },
+  (error) => {
+    console.log('Erreur de chargement ! : ' + error); //déclenchée si le serveur renvoie une erreur
+    reject();
+  },
+  () => {
+    resolve(upload.snapshot.downloadURL); //déclenchée lorsque le chargement est terminé et permet de retourner l'URL unique du fichier chargé.
+  }
+);
+}
+);
 }
 }

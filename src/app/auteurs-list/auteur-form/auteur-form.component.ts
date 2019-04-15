@@ -36,6 +36,7 @@ export class AuteurFormComponent implements OnInit {
     const prenom = this.auteurForm.get('prenom').value;
     const bibliographie = this.auteurForm.get('bibliographie').value;
     const newAuteur = new Auteur(nom, prenom, bibliographie);
+    newAuteur.bibliographie = bibliographie;
     if(this.fileUrl && this.fileUrl !== '') {
       newAuteur.photo = this.fileUrl;
     }
@@ -43,18 +44,18 @@ export class AuteurFormComponent implements OnInit {
     this.router.navigate(['/auteurs']);
 }
 
-  onUploadFile(file: File) {
-    this.fileIsUploading = false;
+  onUploadFile(file: File) { // methode pour récupérer l'URL retournée de upload file//
+    this.fileIsUploading = false;  // pour désactiver le bouton submit pendant le cchargement//
     this.auteursService.uploadFile(file).then(
       (url: string) => {
-        this.fileUrl = url;
+        this.fileUrl = url;  // 1x chargement terminé Url est enregistré et modifie l'étét du component//
         this.fileIsUploading = true;
         this.fileUploaded = true;
       }
     );
 }
 
-detectFiles(event) {
+detectFiles(event) {//méthode qui permettra de lier le  <input type="file">  à la méthode  onUploadFile()//
   this.onUploadFile(event.target.files[0]);
 }
 

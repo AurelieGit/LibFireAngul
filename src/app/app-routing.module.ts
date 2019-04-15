@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'auteurs', canActivate: [AuthGuardService], component: AuteursListComponent },
   { path: 'auteurs/new', canActivate: [AuthGuardService], component: AuteurFormComponent },
   { path: 'auteurs/view/:id', canActivate: [AuthGuardService], component: AuteurSingleComponent },
-  { path: '', redirectTo: 'books', pathMatch: 'full' },
-  { path: '**', redirectTo: 'books' }
+  { path: '', redirectTo: 'auteurs', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auteurs' }
 
 ];
 

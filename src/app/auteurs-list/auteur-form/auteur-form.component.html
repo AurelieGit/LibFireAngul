@@ -4,11 +4,11 @@
     <form [formGroup]="auteurForm" (ngSubmit)="onSaveAuteur()"><!-- capter l'évènement ngSubmit -->
       <div class="form-group">
         <label for="nom">Nom</label>
-        <input type="text" class="form-control" id="nom" formControlName="nom">
+        <input type="text" class="form-control" id="nom" formControlName="nom"/>
       </div>
       <div class="form-group">
         <label for="prenom">Prenom</label>
-        <input type="text" class="form-control" id="prenom" formControlName="prenom">
+        <input type="text" class="form-control" id="prenom" formControlName="prenom"/>
       </div>
       <div class="form-group">
           <label for="bibliographie">Bibliographie</label>
@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
           <h4>Photo de l'auteur</h4>
-          <input type="file"(change)="detectFiles($event)" class="form-control" accept="image/*"><!-- l'évènement lié est l'évènement change siutilisateur a cliqué dessus et choisi 1 fichier. il detectFile et passe l'event en argument. attribut : image/* soit uniqueent des fichier de format image seront acceptés avec leur extention ( .png, .jpg...)-->
+          <input type="file"(change)="upload($event)" class="form-control" accept="image/*"/><!-- l'évènement lié est l'évènement change siutilisateur a cliqué dessus et choisi 1 fichier. il detectFile et passe l'event en argument. attribut : image/* soit uniqueent des fichier de format image seront acceptés avec leur extention ( .png, .jpg...)-->
             <p class="text-success" *ngIf="fileUploaded"> Chargement réussi<!-- pour prévenir duchargeent ngif uniquement si chargement a été effectué avec succes-->
             </p>
         </div>

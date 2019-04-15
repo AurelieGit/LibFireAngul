@@ -19,6 +19,11 @@ import { AuteursListComponent } from './auteurs-list/auteurs-list.component';
 import { AuteurFormComponent } from './auteurs-list/auteur-form/auteur-form.component';
 import { AuteurSingleComponent } from './auteurs-list/auteur-single/auteur-single.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 const appRoutes: Routes =[];
 
@@ -31,10 +36,7 @@ const appRoutes: Routes =[];
     SignupComponent,
     AuteursListComponent,
     AuteurFormComponent,
-    AuteurSingleComponent,
-    
-
- 
+    AuteurSingleComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,10 @@ const appRoutes: Routes =[];
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment),// clés API firebase mise dans environnement//
+    AngularFirestoreModule,
+    AngularFireStorageModule
     
   ],
   providers: [
