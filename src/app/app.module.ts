@@ -15,10 +15,6 @@ import { HeaderComponent } from './header/header.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 
-import { BooksService } from './services/books.service';
-import { BookFormComponent } from './book-list/book-form/book-form.component';
-import { BookListComponent } from './book-list/book-list.component';
-import { SingleBookComponent } from './book-list/single-book/single-book.component';
 import { AuteursListComponent } from './auteurs-list/auteurs-list.component';
 import { AuteurFormComponent } from './auteurs-list/auteur-form/auteur-form.component';
 import { AuteurSingleComponent } from './auteurs-list/auteur-single/auteur-single.component';
@@ -33,9 +29,6 @@ const appRoutes: Routes =[];
     HeaderComponent,
     SigninComponent,
     SignupComponent,
-    BookFormComponent,
-    BookListComponent,
-    SingleBookComponent,
     AuteursListComponent,
     AuteurFormComponent,
     AuteurSingleComponent,
@@ -54,7 +47,6 @@ const appRoutes: Routes =[];
   ],
   providers: [
     AuthService,
-    BooksService,
     AuthGuardService
   ],
   bootstrap: [AppComponent]
