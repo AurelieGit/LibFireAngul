@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Auteur } from '../models/auteur.model';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Auteur } from '../models/auteur.model';
 import { AuteursService } from '../services/auteurs.service';
+import { Router } from '@angular/router';
+
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.css']
+  selector: 'app-auteurs-list',
+  templateUrl: './auteurs-list.component.html',
+  styleUrls: ['./auteurs-list.component.css']
 })
-export class BookListComponent implements OnInit, OnDestroy {
-
+export class AuteursListComponent implements OnInit {
   auteurs: Auteur[];
   auteursSubscription: Subscription;
 
@@ -27,7 +27,7 @@ export class BookListComponent implements OnInit, OnDestroy {
   }
 
   onNewAuteur() {
-    this.router.navigate( ['/books', 'new']);
+    this.router.navigate( ['/auteurs', 'new']);
   }
 
   onDeleteAuteur(auteur: Auteur) {
@@ -35,7 +35,7 @@ export class BookListComponent implements OnInit, OnDestroy {
   }
 
   onViewAuteur(id: number) {
-    this.router.navigate( ['/books', 'view', id]);
+    this.router.navigate( ['/auteurs', 'view', id]);
   }
 
   ngOnDestroy() {

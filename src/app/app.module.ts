@@ -19,6 +19,9 @@ import { BooksService } from './services/books.service';
 import { BookFormComponent } from './book-list/book-form/book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { SingleBookComponent } from './book-list/single-book/single-book.component';
+import { AuteursListComponent } from './auteurs-list/auteurs-list.component';
+import { AuteurFormComponent } from './auteurs-list/auteur-form/auteur-form.component';
+import { AuteurSingleComponent } from './auteurs-list/auteur-single/auteur-single.component';
 
 
 const appRoutes: Routes =[];
@@ -32,7 +35,11 @@ const appRoutes: Routes =[];
     SignupComponent,
     BookFormComponent,
     BookListComponent,
-    SingleBookComponent
+    SingleBookComponent,
+    AuteursListComponent,
+    AuteurFormComponent,
+    AuteurSingleComponent,
+    
 
  
   ],

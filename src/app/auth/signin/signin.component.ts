@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit {
     const password = this.signInForm.get('password').value;
     this.authService.signInUser(email, password).then(  /* remplacer le CreateNewUser car désormais c'est un formulaire de connexion*/
       () => {
-        this.router.navigate(['/books']); /* si la connexion se passe bien redirige vers books par defaut */
+        this.router.navigate(['/auteurs']); /* si la connexion se passe bien redirige vers books par defaut */
       },
       (error) => {
         this.errorMessage = error; /* message d'erreur si sa échoue */

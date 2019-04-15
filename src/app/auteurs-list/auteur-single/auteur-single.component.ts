@@ -4,17 +4,15 @@ import { AuteursService } from 'src/app/services/auteurs.service';
 import { Auteur } from 'src/app/models/auteur.model';
 
 @Component({
-  selector: 'app-single-book',
-  templateUrl: './single-book.component.html',
-  styleUrls: ['./single-book.component.css']
+  selector: 'app-auteur-single',
+  templateUrl: './auteur-single.component.html',
+  styleUrls: ['./auteur-single.component.css']
 })
-export class SingleBookComponent implements OnInit {
+export class AuteurSingleComponent implements OnInit {
 
   auteur: Auteur;
 
-  constructor(private route: ActivatedRoute,
-              private auteursService: AuteursService,
-              private router: Router) { }
+  constructor(private route: ActivatedRoute, private auteursService: AuteursService, private router: Router) { }
 
   ngOnInit() {
     this.auteur = new Auteur('', '', '');

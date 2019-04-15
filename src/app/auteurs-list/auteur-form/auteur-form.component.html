@@ -18,7 +18,6 @@
           <h4>Photo de l'auteur</h4>
           <input type="file"(change)="detectFiles($event)" class="form-control" accept="image/*"><!-- l'évènement lié est l'évènement change siutilisateur a cliqué dessus et choisi 1 fichier. il detectFile et passe l'event en argument. attribut : image/* soit uniqueent des fichier de format image seront acceptés avec leur extention ( .png, .jpg...)-->
             <p class="text-success" *ngIf="fileUploaded"> Chargement réussi<!-- pour prévenir duchargeent ngif uniquement si chargement a été effectué avec succes-->
-
             </p>
         </div>
         <button class="btn btn-success" [disabled]="auteurForm.invalid || fileIsUploading" type="submit">Enregistrer</button><!-- sera désactivé si bookform pas valide et aussi si fichier entrain de charger pour éviter les bug potentiel. btn de type submit pour soumettre le formulaire -->

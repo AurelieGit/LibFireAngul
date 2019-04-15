@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
     this.authService.createNewUser(email, password).then( // le .then car asynch//
       () => {
        
-        this.router.navigate(['/books']); //si la création se passe bien redirige vers books (le chemin protégé) //
+        this.router.navigate(['/auteurs']); //si la création se passe bien redirige vers books (le chemin protégé) //
       },
       (error) => {
         this.errorMessage = error; // message d'erreur affiché dans le template si erreur//

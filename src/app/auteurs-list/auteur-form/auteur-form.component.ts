@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { Auteur } from 'src/app/models/auteur.model';
 
 @Component({
-  selector: 'app-book-form',
-  templateUrl: './book-form.component.html',
-  styleUrls: ['./book-form.component.css']
+  selector: 'app-auteur-form',
+  templateUrl: './auteur-form.component.html',
+  styleUrls: ['./auteur-form.component.css']
 })
-export class BookFormComponent implements OnInit {
+export class AuteurFormComponent implements OnInit {
 
   auteurForm: FormGroup;
   fileIsUploading = false; // photos en false par default//
@@ -40,15 +40,15 @@ export class BookFormComponent implements OnInit {
       newAuteur.photo = this.fileUrl;
     }
     this.auteursService.createNewAuteur(newAuteur);
-    this.router.navigate(['/books']);
+    this.router.navigate(['/auteurs']);
 }
 
   onUploadFile(file: File) {
-    this.fileIsUploading = true;
+    this.fileIsUploading = false;
     this.auteursService.uploadFile(file).then(
       (url: string) => {
         this.fileUrl = url;
-        this.fileIsUploading = false;
+        this.fileIsUploading = true;
         this.fileUploaded = true;
       }
     );
@@ -59,3 +59,4 @@ detectFiles(event) {
 }
 
 }
+
